@@ -1,3 +1,4 @@
+import 'package:co_safe/screens/login.dart';
 import 'package:co_safe/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +9,10 @@ class CoSafe extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: OnBoarding.id,
       routes: {
-        '/': (context) => OnBoarding(),
+        OnBoarding.id: (context) => OnBoarding(),
+        Login.id: (context) => Login(),
       },
     );
   }

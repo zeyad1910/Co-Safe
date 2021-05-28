@@ -1,4 +1,5 @@
 import 'package:co_safe/models/slidemodel.dart';
+import 'package:co_safe/screens/login.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:co_safe/widgets/pageIndexIndicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class OnBoarding extends StatefulWidget {
+  static const String id = '/';
   @override
   _OnBoardingState createState() => _OnBoardingState();
 }
@@ -29,6 +31,9 @@ Widget isNext(BuildContext context) {
     );
   } else {
     return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, Login.id);
+      },
       child: Container(
           width: MediaQuery.of(context).size.width,
           alignment: Alignment.center,
