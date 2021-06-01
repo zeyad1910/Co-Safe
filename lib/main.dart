@@ -1,5 +1,6 @@
 import 'package:co_safe/screens/login.dart';
 import 'package:co_safe/screens/onboarding.dart';
+import 'package:co_safe/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(CoSafe());
@@ -13,6 +14,7 @@ class CoSafe extends StatelessWidget {
       routes: {
         OnBoarding.id: (context) => OnBoarding(),
         Login.id: (context) => Login(),
+        SignUp.id: (context) => SignUp(),
       },
     );
   }

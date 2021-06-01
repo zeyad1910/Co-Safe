@@ -1,37 +1,38 @@
 import 'package:co_safe/utilities/constants.dart';
-import 'package:co_safe/widgets/textfield_container.dart';
+import 'package:co_safe/widgets/input_text.dart';
 import 'package:flutter/material.dart';
 
 class PasswordInputText extends StatelessWidget {
-  final String hintText;
-  final IconData icon;
-  final ValueChanged<String> onChanged;
-
   final bool obscureText;
-
-  PasswordInputText({
-    this.icon,
-    this.hintText,
-    this.onChanged,
-    this.obscureText = true,
-  });
+  final String? hintText;
+  final Widget? icon;
+  final double? width;
+  PasswordInputText(
+      {this.obscureText = true, this.hintText, this.icon, this.width});
 
   @override
   Widget build(BuildContext context) {
-    return TextFieldContainer(
-      child: TextField(
-        obscureText: obscureText,
-        onChanged: onChanged,
-        cursorColor: kMainAppColor,
-        decoration: InputDecoration(
-          icon: Icon(
-            icon,
-            color: kMainAppColor,
-          ),
+    Size size = MediaQuery.of(context).size;
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        InputText(
+          width: width,
+          icon: icon,
+          obscureText: obscureText,
           hintText: hintText,
-          border: InputBorder.none,
         ),
-      ),
+        Positioned(
+          right: size.width * 0.05,
+          child: GestureDetector(
+            onTap: () {},
+            child: Icon(
+              Icons.remove_red_eye,
+              color: kMainAppColor,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

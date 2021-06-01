@@ -1,5 +1,5 @@
 class SlideModel {
-  String assetImagePath, title, desc;
+  String? assetImagePath, title, desc;
   List<SlideModel> getSlides() {
     List<SlideModel> slides = [];
     SlideModel slide1 = SlideModel();

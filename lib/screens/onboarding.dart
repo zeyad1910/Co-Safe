@@ -114,7 +114,7 @@ class _OnBoardingState extends State<OnBoarding> {
 }
 
 class SlideWidget extends StatelessWidget {
-  final String assetImagePath, title, desc;
+  final String? assetImagePath, title, desc;
   SlideWidget({this.assetImagePath, this.title, this.desc});
   @override
   Widget build(BuildContext context) {
@@ -123,13 +123,13 @@ class SlideWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          assetImagePath,
+          assetImagePath!,
           scale: 3.5,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: Text(
-            title,
+            title!,
             style: TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: screenHeight * 0.04,
@@ -142,7 +142,7 @@ class SlideWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: Text(
-            desc,
+            desc!,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: screenHeight * 0.025,
