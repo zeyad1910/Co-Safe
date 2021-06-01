@@ -1,3 +1,4 @@
+import 'package:co_safe/screens/sign_up.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:co_safe/widgets/background.dart';
 import 'package:co_safe/widgets/input_text.dart';
@@ -27,78 +28,71 @@ class _LoginState extends State<Login> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Background(
-          child: ListView(
-            children: [
-              Container(
-                height: size.height * 0.25,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      top: size.width * 0.03,
-                      child: Text(
-                        'Co Safe',
-                        style: TextStyle(
-                            fontSize: size.height * .06,
-                            fontFamily: 'Inconsolata',
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
+        body: SingleChildScrollView(
+          child: Background(
+            pathImage: Image.asset(
+              'assets/images/white_wave.png',
+              width: size.width,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: size.height * 0.25,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Positioned(
+                        top: size.width * 0.01,
+                        child: Text(
+                          'Co Safe',
+                          style: TextStyle(
+                              fontSize: size.height * .06,
+                              fontFamily: 'Inconsolata',
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: Image.asset(
-                        'assets/images/gp_logo.png',
-                        scale: 10.0,
+                      Positioned(
+                        bottom: 0,
+                        child: Image.asset(
+                          'assets/images/gp_logo.png',
+                          scale: 10.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.04,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: InputText(
-                  icon: Icons.person,
-                  hintText: 'YourEmail@example.com',
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  PasswordInputText(
-                    icon: Icons.lock,
-                    obscureText: obscureText,
-                    hintText: 'Password',
+                    ],
                   ),
-                  Positioned(
-                    right: size.width * 0.08,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          obscureText = showPassword();
-                          index++;
-                        });
-                      },
-                      child: Icon(
-                        Icons.remove_red_eye,
-                        color: kMainAppColor,
-                      ),
+                ),
+                SizedBox(
+                  height: size.height * 0.04,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: InputText(
+                    width: size.width * 0.9,
+                    icon: Icon(
+                      Icons.person,
+                      color: kMainAppColor,
                     ),
+                    hintText: 'YourEmail@example.com',
                   ),
-                ],
-              ),
-              SizedBox(
-                height: size.height * 0.03,
-              ),
-              Center(
-                child: GestureDetector(
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                PasswordInputText(
+                  width: size.width * 0.9,
+                  obscureText: true,
+                  hintText: 'Password',
+                  icon: Icon(
+                    Icons.lock,
+                    color: kMainAppColor,
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                GestureDetector(
                   onTap: () {},
                   child: Text(
                     'Forgot your password ?',
@@ -108,46 +102,46 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: size.height * 0.13,
-              ),
-              Center(
-                child: RoundedButton(
+                SizedBox(
+                  height: size.height * 0.13,
+                ),
+                RoundedButton(
                   text: 'Login',
                 ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account ?',
-                    style: TextStyle(
-                      color: kSlidesTextColor,
-                      fontSize: size.height * 0.022,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  SizedBox(
-                    width: size.width * 0.01,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      'Sign Up',
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account ?',
                       style: TextStyle(
-                        fontSize: size.height * 0.022,
                         color: kSlidesTextColor,
-                        fontWeight: FontWeight.w700,
+                        fontSize: size.height * 0.022,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, SignUp.id);
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: size.height * 0.022,
+                          color: kSlidesTextColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
