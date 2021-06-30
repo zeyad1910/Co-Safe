@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
-  final Image pathImage;
-  Background({@required this.child, @required this.pathImage});
+  final Image? pathImage;
+  Background({required this.child, this.pathImage});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,7 +21,7 @@ class Background extends StatelessWidget {
         children: [
           Positioned(
             bottom: 0,
-            child: pathImage,
+            child: pathImage!,
           ),
           child,
         ],
