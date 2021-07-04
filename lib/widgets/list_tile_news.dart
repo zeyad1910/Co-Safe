@@ -3,6 +3,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ListTileNews extends StatelessWidget {
   final String image, title, body, date, url;
+  String smallSentence(String bigSentence) {
+    if (bigSentence.length > 10) {
+      return bigSentence.substring(0, 10);
+    } else {
+      return bigSentence;
+    }
+  }
+
   ListTileNews(
       {required this.image,
       required this.title,
@@ -45,7 +53,7 @@ class ListTileNews extends StatelessWidget {
                       width: size.width * 0.01,
                     ),
                     Text(
-                      date,
+                      smallSentence(date),
                       style: TextStyle(
                           color: Colors.black87, fontSize: size.height * 0.018),
                     ),

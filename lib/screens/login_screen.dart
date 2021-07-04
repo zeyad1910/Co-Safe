@@ -156,6 +156,8 @@ class LoginScreen extends StatelessWidget {
                             if (response.statusCode == 200) {
                               Provider.of<LoginSignUp>(context, listen: false)
                                   .getToken(response);
+                              Provider.of<LoginSignUp>(context, listen: false)
+                                  .getID(response);
                               Navigator.pushNamed(context, HomeScreen.id);
                               _globalKey.currentState!.reset();
                             } else {

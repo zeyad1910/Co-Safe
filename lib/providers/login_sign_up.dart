@@ -7,6 +7,7 @@ class LoginSignUp extends ChangeNotifier {
   bool obscurePasswordLogin = true;
   bool obscurePasswordSignUp = true;
   String? token;
+  String? id;
   bool isLoading = false;
   void showPasswordForLogin() {
     obscurePasswordLogin = !obscurePasswordLogin;
@@ -32,6 +33,13 @@ class LoginSignUp extends ChangeNotifier {
     var data = jsonDecode(response.body);
     var tokenData = data['token'];
     token = tokenData;
+    notifyListeners();
+  }
+
+  void getID(http.Response response) {
+    var data = jsonDecode(response.body);
+    var idData = data['_id'];
+    id = idData;
     notifyListeners();
   }
 }
