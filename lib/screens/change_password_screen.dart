@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:co_safe/providers/login_sign_up.dart';
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/screens/login_screen.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:co_safe/widgets/input_text.dart';
@@ -62,10 +62,10 @@ class ChangePasswordScreen extends StatelessWidget {
                         }
                       },
                       onTap: () {
-                        Provider.of<LoginSignUp>(context, listen: false)
+                        Provider.of<UserProvider>(context, listen: false)
                             .showPasswordForLogin();
                       },
-                      obscureText: Provider.of<LoginSignUp>(context)
+                      obscureText: Provider.of<UserProvider>(context)
                           .obscurePasswordLogin,
                       hintText: 'Password',
                       icon: Icon(
@@ -93,10 +93,10 @@ class ChangePasswordScreen extends StatelessWidget {
                         }
                       },
                       onTap: () {
-                        Provider.of<LoginSignUp>(context, listen: false)
+                        Provider.of<UserProvider>(context, listen: false)
                             .showPasswordForLogin();
                       },
-                      obscureText: Provider.of<LoginSignUp>(context)
+                      obscureText: Provider.of<UserProvider>(context)
                           .obscurePasswordLogin,
                       hintText: 'Password',
                       icon: Icon(

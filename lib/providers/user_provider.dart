@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-class LoginSignUp extends ChangeNotifier {
+class UserProvider extends ChangeNotifier {
   bool obscurePasswordLogin = true;
   bool obscurePasswordSignUp = true;
   String? token;
-  String? id;
+  String id = '';
   bool isLoading = false;
   void showPasswordForLogin() {
     obscurePasswordLogin = !obscurePasswordLogin;
@@ -38,7 +38,7 @@ class LoginSignUp extends ChangeNotifier {
 
   void getID(http.Response response) {
     var data = jsonDecode(response.body);
-    var idData = data['_id'];
+    var idData = data['user']['_id'];
     id = idData;
     notifyListeners();
   }

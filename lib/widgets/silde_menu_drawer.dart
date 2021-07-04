@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:co_safe/providers/login_sign_up.dart';
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/screens/faq_screen.dart';
 import 'package:co_safe/screens/home_screen.dart';
 import 'package:co_safe/screens/login_screen.dart';
@@ -69,7 +69,7 @@ class SlideMenuDrawer extends StatelessWidget {
                 onTap: () async {
                   final msg = jsonEncode({
                     "token":
-                        Provider.of<LoginSignUp>(context, listen: false).token
+                        Provider.of<UserProvider>(context, listen: false).token
                   });
                   var response = await http.post(
                       Uri.parse(

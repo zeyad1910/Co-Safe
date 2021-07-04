@@ -1,6 +1,6 @@
 import 'package:co_safe/controller/user_data.dart';
 import 'package:co_safe/models/user.dart';
-import 'package:co_safe/providers/login_sign_up.dart';
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/screens/enter_email_screen.dart';
 import 'package:co_safe/screens/sign_up_screen.dart';
 import 'package:co_safe/utilities/constants.dart';
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ModalProgressHUD(
-          inAsyncCall: Provider.of<LoginSignUp>(context).isLoading,
+          inAsyncCall: Provider.of<UserProvider>(context).isLoading,
           child: Form(
             key: _globalKey,
             child: SingleChildScrollView(
@@ -115,10 +115,10 @@ class LoginScreen extends StatelessWidget {
                           }
                         },
                         onTap: () {
-                          Provider.of<LoginSignUp>(context, listen: false)
+                          Provider.of<UserProvider>(context, listen: false)
                               .showPasswordForLogin();
                         },
-                        obscureText: Provider.of<LoginSignUp>(context)
+                        obscureText: Provider.of<UserProvider>(context)
                             .obscurePasswordLogin,
                         hintText: 'Password',
                         icon: Icon(
@@ -147,29 +147,29 @@ class LoginScreen extends StatelessWidget {
                     ),
                     RoundedButton(
                       press: () async {
-                        Provider.of<LoginSignUp>(context, listen: false)
+                        Provider.of<UserProvider>(context, listen: false)
                             .showLoadingIndicator();
                         if (_globalKey.currentState!.validate()) {
                           _globalKey.currentState!.save();
                           try {
                             var response = await userData.loginUser(user);
                             if (response.statusCode == 200) {
-                              Provider.of<LoginSignUp>(context, listen: false)
+                              Provider.of<UserProvider>(context, listen: false)
                                   .getToken(response);
-                              Provider.of<LoginSignUp>(context, listen: false)
+                              Provider.of<UserProvider>(context, listen: false)
                                   .getID(response);
                               Navigator.pushNamed(context, HomeScreen.id);
                               _globalKey.currentState!.reset();
                             } else {
                               print(response.statusCode);
                             }
-                            Provider.of<LoginSignUp>(context, listen: false)
+                            Provider.of<UserProvider>(context, listen: false)
                                 .notShowLoadingIndicator();
                           } catch (e) {
                             print(e);
                           }
                         }
-                        Provider.of<LoginSignUp>(context, listen: false)
+                        Provider.of<UserProvider>(context, listen: false)
                             .notShowLoadingIndicator();
                       },
                       text: 'Login',

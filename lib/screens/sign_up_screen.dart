@@ -1,6 +1,6 @@
 import 'package:co_safe/controller/user_data.dart';
 import 'package:co_safe/models/user.dart';
-import 'package:co_safe/providers/login_sign_up.dart';
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/screens/login_screen.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:co_safe/widgets/background.dart';
@@ -39,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ModalProgressHUD(
-          inAsyncCall: Provider.of<LoginSignUp>(context).isLoading,
+          inAsyncCall: Provider.of<UserProvider>(context).isLoading,
           child: Form(
             key: _globalKey,
             child: Background(
@@ -182,10 +182,10 @@ class SignUpScreen extends StatelessWidget {
                                 return 'password length must be at least 8 characters';
                               }
                             },
-                            obscureText: Provider.of<LoginSignUp>(context)
+                            obscureText: Provider.of<UserProvider>(context)
                                 .obscurePasswordSignUp,
                             onTap: () {
-                              Provider.of<LoginSignUp>(context, listen: false)
+                              Provider.of<UserProvider>(context, listen: false)
                                   .showPasswordForSignUp();
                             },
                           ),
@@ -301,7 +301,7 @@ class SignUpScreen extends StatelessWidget {
                       RoundedButton(
                         text: 'Sign Up',
                         press: () async {
-                          Provider.of<LoginSignUp>(context, listen: false)
+                          Provider.of<UserProvider>(context, listen: false)
                               .showLoadingIndicator();
                           if (_globalKey.currentState!.validate()) {
                             _globalKey.currentState!.save();
@@ -314,13 +314,13 @@ class SignUpScreen extends StatelessWidget {
                               } else {
                                 print(response.statusCode);
                               }
-                              Provider.of<LoginSignUp>(context, listen: false)
+                              Provider.of<UserProvider>(context, listen: false)
                                   .notShowLoadingIndicator();
                             } catch (e) {
                               print(e);
                             }
                           }
-                          Provider.of<LoginSignUp>(context, listen: false)
+                          Provider.of<UserProvider>(context, listen: false)
                               .notShowLoadingIndicator();
                         },
                       ),

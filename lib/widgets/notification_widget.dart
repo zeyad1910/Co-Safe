@@ -1,4 +1,3 @@
-import 'package:co_safe/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class NotificationWidget extends StatelessWidget {
@@ -40,7 +39,7 @@ class NotificationWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: TextStyle(color: kMainAppColor),
+            style: TextStyle(color: Color(0xFF54A1AC)),
           ),
           SizedBox(
             height: size.height * 0.01,

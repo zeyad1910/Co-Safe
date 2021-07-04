@@ -1,5 +1,5 @@
 import 'package:co_safe/providers/home_provider.dart';
-import 'package:co_safe/providers/login_sign_up.dart';
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/screens/advices_screen.dart';
 import 'package:co_safe/screens/change_password_screen.dart';
 import 'package:co_safe/screens/details_screen.dart';
@@ -31,7 +31,8 @@ class CoSafe extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LoginSignUp>(create: (context) => LoginSignUp()),
+        ChangeNotifierProvider<UserProvider>(
+            create: (context) => UserProvider()),
         ChangeNotifierProvider<HomeProvider>(
           create: (BuildContext ctx) => HomeProvider(),
         ),
