@@ -8,6 +8,7 @@ class UserProvider extends ChangeNotifier {
   bool obscurePasswordSignUp = true;
   String? token;
   String id = '';
+  late bool isInfected;
   bool isLoading = false;
   void showPasswordForLogin() {
     obscurePasswordLogin = !obscurePasswordLogin;
@@ -40,6 +41,13 @@ class UserProvider extends ChangeNotifier {
     var data = jsonDecode(response.body);
     var idData = data['user']['_id'];
     id = idData;
+    notifyListeners();
+  }
+
+  void getIsInfected(http.Response response) {
+    var data = jsonDecode(response.body);
+    var isInfectedData = data['user']['isInfected'];
+    isInfected = isInfectedData;
     notifyListeners();
   }
 }

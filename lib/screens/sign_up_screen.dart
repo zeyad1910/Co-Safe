@@ -39,6 +39,7 @@ class SignUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ModalProgressHUD(
+          color: kMainAppColor,
           inAsyncCall: Provider.of<UserProvider>(context).isLoading,
           child: Form(
             key: _globalKey,
@@ -282,6 +283,8 @@ class SignUpScreen extends StatelessWidget {
                               ),
                               child: CountryListPick(
                                 theme: CountryTheme(
+                                  alphabetSelectedBackgroundColor:
+                                      kMainAppColor,
                                   isShowFlag: true,
                                   isShowTitle: false,
                                   isDownIcon: true,

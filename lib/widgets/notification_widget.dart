@@ -4,12 +4,11 @@ class NotificationWidget extends StatelessWidget {
   final String date;
   final String title;
   final String body;
-  String smallSentence(String bigSentence) {
-    if (bigSentence.length > 10) {
-      return bigSentence.substring(0, 10);
-    } else {
-      return bigSentence;
-    }
+  List<String> smallSentence(String bigSentence) {
+    List<String> dateTime = [];
+    dateTime.add(bigSentence.split('T')[0]);
+    dateTime.add(bigSentence.split('T')[1].substring(0, 5));
+    return dateTime;
   }
 
   NotificationWidget(
@@ -30,16 +29,25 @@ class NotificationWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            smallSentence(date),
-            style: TextStyle(color: Colors.red),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '${smallSentence(date)[0]}',
+                style: TextStyle(color: Color(0xFF54A1AC)),
+              ),
+              Text(
+                '${smallSentence(date)[1]}',
+                style: TextStyle(color: Color(0xFF54A1AC)),
+              ),
+            ],
           ),
           SizedBox(
             height: size.height * 0.01,
           ),
           Text(
             title,
-            style: TextStyle(color: Color(0xFF54A1AC)),
+            style: TextStyle(color: Colors.red),
           ),
           SizedBox(
             height: size.height * 0.01,

@@ -33,6 +33,7 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ModalProgressHUD(
+          color: kMainAppColor,
           inAsyncCall: Provider.of<UserProvider>(context).isLoading,
           child: Form(
             key: _globalKey,
@@ -53,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                           Positioned(
                             top: size.width * 0.01,
                             child: Text(
-                              'Co Safe',
+                              'Co-Safe',
                               style: TextStyle(
                                   fontSize: size.height * .06,
                                   fontFamily: 'Inconsolata',
@@ -158,6 +159,8 @@ class LoginScreen extends StatelessWidget {
                                   .getToken(response);
                               Provider.of<UserProvider>(context, listen: false)
                                   .getID(response);
+                              Provider.of<UserProvider>(context, listen: false)
+                                  .getIsInfected(response);
                               Navigator.pushNamed(context, HomeScreen.id);
                               _globalKey.currentState!.reset();
                             } else {

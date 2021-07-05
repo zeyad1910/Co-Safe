@@ -13,6 +13,7 @@ import 'package:co_safe/screens/notifications_screen.dart';
 import 'package:co_safe/screens/onboarding_screen.dart';
 import 'package:co_safe/screens/sign_up_screen.dart';
 import 'package:co_safe/screens/view_all_screen.dart';
+import 'package:co_safe/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,8 @@ class CoSafe extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        theme:
+            ThemeData(appBarTheme: AppBarTheme(backgroundColor: kMainAppColor)),
         debugShowCheckedModeBanner: false,
         initialRoute: OnBoardingScreen.id,
         routes: {

@@ -5,6 +5,7 @@ import 'package:co_safe/screens/faq_screen.dart';
 import 'package:co_safe/screens/home_screen.dart';
 import 'package:co_safe/screens/login_screen.dart';
 import 'package:co_safe/utilities/constants.dart';
+import 'package:co_safe/widgets/bluetooth_switch.dart';
 import 'package:co_safe/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,7 +37,7 @@ class SlideMenuDrawer extends StatelessWidget {
               ),
               MenuItem(
                 icon: Icon(
-                  FontAwesomeIcons.questionCircle,
+                  FontAwesomeIcons.solidQuestionCircle,
                   color: kMainAppColor,
                   size: size.height * 0.033,
                 ),
@@ -53,6 +54,32 @@ class SlideMenuDrawer extends StatelessWidget {
                 titleText: 'Donate',
                 onTap: () async => await launch(
                     "https://covid19responsefund.org/en/?gclid=Cj0KCQjwktKFBhCkARIsAJeDT0hlbUlsNWrt5zMPxWJfVK9zxjI1-UkY6w7HnJqSGUmLY1JnfGiRNdkaAkU7EALw_wcB"),
+              ),
+              MenuItem(
+                icon: Icon(
+                  Icons.warning,
+                  color: kMainAppColor,
+                ),
+                titleText: 'Myth Busters',
+                onTap: () async => await launch(
+                    "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters"),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.bluetooth,
+                  color: kMainAppColor,
+                ),
+                title: Text(
+                  'Notify',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w800),
+                ),
+                trailing: Bluetooth(
+                    isInfected:
+                        Provider.of<UserProvider>(context, listen: false)
+                            .isInfected),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
