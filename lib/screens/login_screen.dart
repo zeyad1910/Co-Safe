@@ -2,6 +2,7 @@ import 'package:co_safe/controller/user_data.dart';
 import 'package:co_safe/models/user.dart';
 import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/screens/enter_email_screen.dart';
+import 'package:co_safe/screens/loading_screen.dart';
 import 'package:co_safe/screens/sign_up_screen.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:co_safe/widgets/background.dart';
@@ -12,7 +13,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-
 import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ModalProgressHUD(
-          color: kMainAppColor,
+          progressIndicator: LoadingScreen(),
           inAsyncCall: Provider.of<UserProvider>(context).isLoading,
           child: Form(
             key: _globalKey,

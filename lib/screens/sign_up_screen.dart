@@ -13,8 +13,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-
 import 'home_screen.dart';
+import 'loading_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const String id = '/sign_up';
@@ -39,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ModalProgressHUD(
-          color: kMainAppColor,
+          progressIndicator: LoadingScreen(),
           inAsyncCall: Provider.of<UserProvider>(context).isLoading,
           child: Form(
             key: _globalKey,

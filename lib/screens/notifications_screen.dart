@@ -1,4 +1,5 @@
 import 'package:co_safe/controller/notification_data.dart';
+import 'package:co_safe/models/notifications.dart';
 import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:co_safe/widgets/notification_widget.dart';
@@ -37,21 +38,31 @@ class NotificationsScreen extends StatelessWidget {
               image: AssetImage('assets/images/background_design.png'),
             ),
           ),
-          child: FutureBuilder(
+          child: FutureBuilder<List<Notifications>>(
             future: _notificationData
                 .getNotifications(Provider.of<UserProvider>(context).id),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return LoadingScreen();
               } else {
-                return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return NotificationWidget(
-                          date: snapshot.data[index].date,
-                          title: snapshot.data[index].title,
-                          body: snapshot.data[index].message);
-                    });
+                return snapshot.data.isEmpty
+                    ? Center(
+                        child: Text(
+                        'No Notifications Found',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ))
+                    : ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return NotificationWidget(
+                              date: snapshot.data[index].date,
+                              title: snapshot.data[index].title,
+                              body: snapshot.data[index].message);
+                        });
               }
             },
           ),

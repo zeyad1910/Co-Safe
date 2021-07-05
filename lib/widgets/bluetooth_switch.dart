@@ -3,13 +3,12 @@ import 'dart:typed_data';
 import 'package:co_safe/controller/local_notify_manager.dart';
 import 'package:co_safe/controller/notification_data.dart';
 import 'package:co_safe/models/notifications.dart';
-import 'package:device_info/device_info.dart';
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
+import 'package:provider/provider.dart';
 
 class Bluetooth extends StatefulWidget {
-  Bluetooth({required this.isInfected});
-  final bool isInfected;
   @override
   _BluetoothState createState() => _BluetoothState();
 }
@@ -21,12 +20,9 @@ class _BluetoothState extends State<Bluetooth> {
   Set<String> _devicesConnectedBefore = {};
   final Strategy _strategy = Strategy.P2P_STAR;
   late final LocalNotificationManager _localNotificationManager;
-  int _id = 0;
   @override
   void initState() {
-    DeviceInfoPlugin().androidInfo.then((value) => setState(() {
-          _userName = value.id;
-        }));
+    _userName = Provider.of<UserProvider>(context, listen: false).id;
     _localNotificationManager = LocalNotificationManager();
     _localNotificationManager.initNotification(context);
     super.initState();
@@ -51,7 +47,7 @@ class _BluetoothState extends State<Bluetooth> {
               await Nearby().enableLocationServices();
             }
             _stop = false;
-            if (widget.isInfected) {
+            if (Provider.of<UserProvider>(context, listen: false).isInfected) {
               startDiscovery();
             } else {
               startAdvertising();
@@ -160,12 +156,11 @@ class _BluetoothState extends State<Bluetooth> {
             await _localNotificationManager.showNotification();
             Notifications notification = Notifications(
               date: DateTime.now().toString(),
-              title: 'Co-Safe',
+              title: 'Warning',
               message: 'there is an infected person around you',
-              userId: _id.toString(),
+              userId: _userName,
             );
             await NotificationData().pushNotification(notification);
-            _id++;
           }
         },
         onPayloadTransferUpdate: (endId, payloadTransferUpdate) async {

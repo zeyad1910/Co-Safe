@@ -76,10 +76,7 @@ class SlideMenuDrawer extends StatelessWidget {
                       fontSize: 15.0,
                       fontWeight: FontWeight.w800),
                 ),
-                trailing: Bluetooth(
-                    isInfected:
-                        Provider.of<UserProvider>(context, listen: false)
-                            .isInfected),
+                trailing: Bluetooth(),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),

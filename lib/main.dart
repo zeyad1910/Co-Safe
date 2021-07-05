@@ -39,8 +39,10 @@ class CoSafe extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        theme:
-            ThemeData(appBarTheme: AppBarTheme(backgroundColor: kMainAppColor)),
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(backgroundColor: kMainAppColor),
+          accentColor: kMainAppColor,
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: OnBoardingScreen.id,
         routes: {

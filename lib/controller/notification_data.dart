@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:co_safe/models/notifications.dart';
 import 'package:http/http.dart' as http;
 
