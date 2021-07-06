@@ -17,8 +17,8 @@ import 'package:co_safe/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import 'screens/home_screen.dart';
+import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +38,7 @@ class CoSafe extends StatelessWidget {
           create: (BuildContext ctx) => HomeProvider(),
         ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         theme: ThemeData(
           appBarTheme: AppBarTheme(backgroundColor: kMainAppColor),
           accentColor: kMainAppColor,

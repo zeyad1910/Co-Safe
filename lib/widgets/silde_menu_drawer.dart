@@ -32,6 +32,7 @@ class SlideMenuDrawer extends StatelessWidget {
                 ),
                 titleText: 'Home',
                 onTap: () {
+                  Navigator.pop(context);
                   Navigator.pushNamed(context, HomeScreen.id);
                 },
               ),
@@ -43,6 +44,7 @@ class SlideMenuDrawer extends StatelessWidget {
                 ),
                 titleText: 'FAQ',
                 onTap: () {
+                  Navigator.pop(context);
                   Navigator.pushNamed(context, FaqScreen.id);
                 },
               ),
@@ -52,8 +54,11 @@ class SlideMenuDrawer extends StatelessWidget {
                   color: kMainAppColor,
                 ),
                 titleText: 'Donate',
-                onTap: () async => await launch(
-                    "https://covid19responsefund.org/en/?gclid=Cj0KCQjwktKFBhCkARIsAJeDT0hlbUlsNWrt5zMPxWJfVK9zxjI1-UkY6w7HnJqSGUmLY1JnfGiRNdkaAkU7EALw_wcB"),
+                onTap: () async {
+                  Navigator.pop(context);
+                  await launch(
+                      "https://covid19responsefund.org/en/?gclid=Cj0KCQjwktKFBhCkARIsAJeDT0hlbUlsNWrt5zMPxWJfVK9zxjI1-UkY6w7HnJqSGUmLY1JnfGiRNdkaAkU7EALw_wcB");
+                },
               ),
               MenuItem(
                 icon: Icon(
@@ -61,12 +66,17 @@ class SlideMenuDrawer extends StatelessWidget {
                   color: kMainAppColor,
                 ),
                 titleText: 'Myth Busters',
-                onTap: () async => await launch(
-                    "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters"),
+                onTap: () async {
+                  Navigator.pop(context);
+                  await launch(
+                      "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/myth-busters");
+                },
               ),
               ListTile(
                 leading: Icon(
-                  Icons.bluetooth,
+                  Provider.of<UserProvider>(context, listen: true).optIn
+                      ? Icons.bluetooth
+                      : Icons.bluetooth_disabled,
                   color: kMainAppColor,
                 ),
                 title: Text(
@@ -104,6 +114,7 @@ class SlideMenuDrawer extends StatelessWidget {
                       },
                       body: msg);
                   if (response.statusCode == 200) {
+                    Navigator.pop(context);
                     Navigator.pushNamed(context, LoginScreen.id);
                   }
                 },

@@ -1,5 +1,7 @@
+import 'package:co_safe/providers/user_provider.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PasswordInputText extends StatelessWidget {
   final bool obscureText;
@@ -31,7 +33,9 @@ class PasswordInputText extends StatelessWidget {
         suffixIcon: GestureDetector(
           onTap: onTap,
           child: Icon(
-            Icons.remove_red_eye,
+            Provider.of<UserProvider>(context).obscurePassword
+                ? Icons.visibility_off
+                : Icons.visibility,
             color: kMainAppColor,
           ),
         ),

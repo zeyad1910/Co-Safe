@@ -117,10 +117,10 @@ class LoginScreen extends StatelessWidget {
                         },
                         onTap: () {
                           Provider.of<UserProvider>(context, listen: false)
-                              .showPasswordForLogin();
+                              .showPassword();
                         },
-                        obscureText: Provider.of<UserProvider>(context)
-                            .obscurePasswordLogin,
+                        obscureText:
+                            Provider.of<UserProvider>(context).obscurePassword,
                         hintText: 'Password',
                         icon: Icon(
                           Icons.lock,

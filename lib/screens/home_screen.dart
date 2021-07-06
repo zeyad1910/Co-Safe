@@ -3,7 +3,6 @@ import 'package:co_safe/screens/news_screen.dart';
 import 'package:co_safe/screens/statistics_screen.dart';
 import 'package:co_safe/utilities/constants.dart';
 import 'package:flutter/material.dart';
-
 import 'notifications_screen.dart';
 
 class HomeScreen extends StatefulWidget {

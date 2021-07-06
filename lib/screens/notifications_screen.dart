@@ -6,7 +6,6 @@ import 'package:co_safe/widgets/notification_widget.dart';
 import 'package:co_safe/widgets/silde_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'loading_screen.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -27,8 +26,8 @@ class NotificationsScreen extends StatelessWidget {
         backgroundColor: kMainAppColor,
       ),
       body: RefreshIndicator(
-        onRefresh: () async => await _notificationData
-            .getNotifications(Provider.of<UserProvider>(context).id),
+        onRefresh: () async => await _notificationData.getNotifications(
+            Provider.of<UserProvider>(context, listen: false).id),
         child: Container(
           height: size.height,
           width: double.infinity,
@@ -42,7 +41,7 @@ class NotificationsScreen extends StatelessWidget {
             future: _notificationData
                 .getNotifications(Provider.of<UserProvider>(context).id),
             builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
+              if (!snapshot.hasData) {
                 return LoadingScreen();
               } else {
                 return snapshot.data.isEmpty

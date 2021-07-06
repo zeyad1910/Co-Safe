@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:co_safe/controller/local_notify_manager.dart';
 import 'package:co_safe/controller/notification_data.dart';
 import 'package:co_safe/models/notifications.dart';
@@ -14,7 +13,6 @@ class Bluetooth extends StatefulWidget {
 }
 
 class _BluetoothState extends State<Bluetooth> {
-  bool _optIn = false;
   late bool _stop;
   String _userName = "";
   Set<String> _devicesConnectedBefore = {};
@@ -24,7 +22,7 @@ class _BluetoothState extends State<Bluetooth> {
   void initState() {
     _userName = Provider.of<UserProvider>(context, listen: false).id;
     _localNotificationManager = LocalNotificationManager();
-    _localNotificationManager.initNotification(context);
+    _localNotificationManager.initNotification();
     super.initState();
   }
 
@@ -34,12 +32,10 @@ class _BluetoothState extends State<Bluetooth> {
     return SizedBox(
       width: size.width / 6.5,
       child: Switch(
-        value: _optIn,
+        value: Provider.of<UserProvider>(context, listen: true).optIn,
         onChanged: (value) async {
-          setState(() {
-            _optIn = value;
-          });
-          if (_optIn) {
+          Provider.of<UserProvider>(context, listen: false).toggleOptIn(value);
+          if (Provider.of<UserProvider>(context, listen: false).optIn) {
             if (!await Nearby().checkLocationPermission()) {
               await Nearby().askLocationPermission();
             }
@@ -60,6 +56,34 @@ class _BluetoothState extends State<Bluetooth> {
           }
         },
       ),
+
+      // child: Switch(
+      //   value: _optIn,
+      //   onChanged: (value) async {
+      //     setState(() {
+      //       _optIn = value;
+      //     });
+      //     if (_optIn) {
+      //       if (!await Nearby().checkLocationPermission()) {
+      //         await Nearby().askLocationPermission();
+      //       }
+      //       if (!await Nearby().checkLocationEnabled()) {
+      //         await Nearby().enableLocationServices();
+      //       }
+      //       _stop = false;
+      //       if (Provider.of<UserProvider>(context, listen: false).isInfected) {
+      //         startDiscovery();
+      //       } else {
+      //         startAdvertising();
+      //       }
+      //     } else {
+      //       _stop = true;
+      //       await Nearby().stopAdvertising();
+      //       await Nearby().stopDiscovery();
+      //       _devicesConnectedBefore.clear();
+      //     }
+      //   },
+      // ),
     );
   }
 
@@ -84,9 +108,7 @@ class _BluetoothState extends State<Bluetooth> {
           onEndpointFound: (id, name, serviceId) async {
             await Nearby().stopDiscovery();
             if (!_devicesConnectedBefore.contains(name)) {
-              setState(() {
-                _devicesConnectedBefore.add(name);
-              });
+              _devicesConnectedBefore.add(name);
               await Future.delayed(Duration(seconds: 2));
               Nearby().requestConnection(
                 _userName,

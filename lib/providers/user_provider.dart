@@ -1,22 +1,23 @@
 import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class UserProvider extends ChangeNotifier {
-  bool obscurePasswordLogin = true;
-  bool obscurePasswordSignUp = true;
+  bool obscurePassword = true;
   String? token;
   String id = '';
   late bool isInfected;
   bool isLoading = false;
-  void showPasswordForLogin() {
-    obscurePasswordLogin = !obscurePasswordLogin;
+  bool optIn = false;
+
+  void toggleOptIn(bool value) {
+    optIn = value;
     notifyListeners();
   }
 
-  void showPasswordForSignUp() {
-    obscurePasswordSignUp = !obscurePasswordSignUp;
+  void showPassword() {
+    obscurePassword = !obscurePassword;
     notifyListeners();
   }
 

@@ -184,10 +184,10 @@ class SignUpScreen extends StatelessWidget {
                               }
                             },
                             obscureText: Provider.of<UserProvider>(context)
-                                .obscurePasswordSignUp,
+                                .obscurePassword,
                             onTap: () {
                               Provider.of<UserProvider>(context, listen: false)
-                                  .showPasswordForSignUp();
+                                  .showPassword();
                             },
                           ),
                         ),

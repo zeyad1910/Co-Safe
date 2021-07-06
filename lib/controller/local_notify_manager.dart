@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:co_safe/screens/notifications_screen.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart';
 
 class LocalNotificationManager {
   late final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
@@ -7,22 +9,18 @@ class LocalNotificationManager {
   LocalNotificationManager() {
     _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   }
-  Future<void> initNotification(BuildContext context) async {
+  Future<void> initNotification() async {
     AndroidInitializationSettings androidInitSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
     InitializationSettings initSettings =
         InitializationSettings(android: androidInitSettings);
     await _flutterLocalNotificationsPlugin.initialize(
       initSettings,
+      onSelectNotification: (payload) async {
+        Get.toNamed(NotificationsScreen.id);
+      },
     );
   }
-  //
-  // Future selectNotification(BuildContext context) async {
-  //   await Navigator.push(
-  //     context,
-  //     MaterialPageRoute<void>(builder: (context) => ),
-  //   );
-  // }
 
   Future<void> showNotification() async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =

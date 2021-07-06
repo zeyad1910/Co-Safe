@@ -55,7 +55,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Co Safe',
+          'Co-Safe',
           style: TextStyle(
               fontSize: size.height * 0.035, fontWeight: FontWeight.w800),
         ),
