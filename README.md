@@ -1,6 +1,6 @@
 # CO-Safe Application
 
-![App Screenshot](screenshot.png)
+<img src="App home.png" alt="App Screenshot" width="200">
 
 ## Overview
 
@@ -32,8 +32,9 @@ The COVID-19 Application, built with Dart and Flutter, is a comprehensive tool d
 
 ## Screenshots
 
-![Screenshot 1](screenshot1.png)
-![Screenshot 2](screenshot2.png)
+| Screenshot 1 | Screenshot 2 | Screenshot 3 | Screenshot 4 |
+|---------------|---------------|---------------|---------------|
+| <img src="prevention.png" alt="Screenshot 1" width="300"> | <img src="confirmed.png" alt="Screenshot 2" width="300"> | <img src="symptoms.png" alt="Screenshot 3" width="300"> | <img src="all.png" alt="Screenshot 4" width="300"> |
 
 ## Installation
 
