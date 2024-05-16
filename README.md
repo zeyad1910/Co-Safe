@@ -1,6 +1,6 @@
 # CO-Safe Application
 
-<img src="App home.png" alt="App Screenshot" width="200">
+<img src="home.png" alt="App Screenshot" width="200">
 
 ## Overview
 
